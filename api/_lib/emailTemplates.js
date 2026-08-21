@@ -128,8 +128,8 @@ function bookingApprovedPaymentRequiredEmail({ business, appUrl, booking, isRemi
       row("Booking ID", booking.bookingId),
       row("Trip", `${booking.pickup} → ${booking.destination}`),
       row("Travel Date", fmtDate(booking.travelDate)),
-      row("Total Amount", money(booking.totalAmount)),
-      row("Amount to Pay Now", money(booking.advanceAmount || booking.totalAmount)),
+      row("Total Amount", money(p.baseAmount)),
+      row("Amount to Pay Now", money(p.advanceRequiredAmount || booking.totalAmount)),
     ]) +
     `<p>Tap the button below to view your secure payment page and pay by UPI/QR.</p>`;
   return {
@@ -141,7 +141,7 @@ function bookingApprovedPaymentRequiredEmail({ business, appUrl, booking, isRemi
       heading: isReminder ? "Your payment is still pending" : "Your booking is approved!",
       bodyHtml,
       ctaText: "Complete Payment",
-      ctaUrl: `${appUrl}/payment.html?token=${encodeURIComponent(booking.paymentToken || booking.bookingId)}`,
+      ctaUrl: `${appUrl}/payment.html?token=${encodeURIComponent(b.activePaymentRequest.secureToken || booking.bookingId)}`,
       footerNote: "Please complete payment to secure your vehicle for the requested date.",
     }),
   };
