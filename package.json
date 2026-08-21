@@ -1,0 +1,32 @@
+{
+  "name": "prakash-tour-travels",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Prakash Tour & Travels — production booking and travel management system. Express + PostgreSQL (Prisma), deployable on Koyeb as a persistent Node service.",
+  "main": "server.js",
+  "dependencies": {
+    "@prisma/client": "6.19.1",
+    "@vercel/blob": "^2.8.0",
+    "bcryptjs": "^3.0.3",
+    "busboy": "^1.6.0",
+    "express": "^4.21.2",
+    "jose": "^6.2.9",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^9.0.5",
+    "prisma": "6.19.1",
+    "razorpay": "^2.9.8",
+    "resend": "^4.0.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "engines": {
+    "node": ">=22 <25"
+  }
+}
